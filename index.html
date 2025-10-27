@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sacad Mohamed | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <img src="Sacad.JPEG" alt="Sacad Logo" class="logo">
+      <h1>SACAD MOHAMED MOHAMOUD</h1>
+      <p>💻 Data Analyst | 🚀 Data Scientist | 🎨 Information Management</p>
+    </div>
+  </header>
+
+   <nav>
+        <a href="#about">About</a>
+        <a href="#dashboard">Dashboards</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <p>
+      Hi, I'm <strong>Sacad Mohamed Mohamoud</strong> — a professional data analyst and information management who is passionate about data management, data analysis, data verification, building clean, user-friendly web apps using R shiny and contributing to open source projects.
+    </p>
+  </section>
+
+    <section id="skills" class="container">
+    <h2>Skills</h2>
+    <div class = "skills">
+      <p class="skills-item">R programming</p>
+      <p class="skills-item">PowerBI</p>
+      <p class="skills-item">SQL</p>
+      <p class="skills-item">Excel</p>
+      <p class="skills-item">Kobo&ODK</p>
+      <p class="skills-item">Tableau</p>
+      <p class="skills-item">GIS</p>
+      <p class="skills-item">Python</p>
+      <p class="skills-item">Adobe</p>
+    </div>
+  </section>
+
+    <section id="dashboard" class="container">
+    <h2>Dashboards</h2>
+    <p>Here are my R shiny-built dashboards:</p>
+    <div class="dashboard-container">
+         <!-- Dashboard -->
+         <a href="https://saadwebapp.shinyapps.io/World_Pop_analysis_R/" class="dashboard-item">
+            <h4>📊 World Population Analysis</h4>
+        </a>
+
+         <a href="https://saadwebapp.shinyapps.io/PredictiveModelling/" class="dashboard-item">
+            <h4>📊 Predictive Modelling</h4>
+        </a>
+
+        <a href="https://saadwebapp.shinyapps.io/ScatteringCategories/" class="dashboard-item">
+            <h4>📊 Scatter Categories</h4>
+        </a>
+    </div>
+  </section>
+
+  <section id="projects" class="container">
+    <h2>Projects/GitHub Repositories</h2>
+    <p>Here are my public GitHub repositories:</p>
+    <div id="repo-list" class="projects-grid">
+      <p>Loading repositories...</p>
+    </div>
+  </section>
+
+
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <p>📫 Email: <a href="mailto:sacadmohamed2124@gmail.com">sacadmohamed2124@gmail.com</a></p>
+    <p>🔗 GitHub: <a href="https://github.com/Sacadmohamed" target="_blank">github.com/Sacadmohamed</a></p>
+  </section>
+
+
+    <!-- ===== Image Slider ===== -->
+  <div class="slider">
+    <div class="slides">
+      <img src="images/Astan.png" alt="Astan">
+      <img src="images/Displacement_Model.png" alt="Displacement Model">
+      <img src="images/Elev.png" alt="Elevation">
+      <img src="images/World_pop.png" alt="World population Analaysis">
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 sacad mohamed. Built with using GitHub Pages.</p>
+  </footer>
+
+  <script>
+    // Replace with your GitHub username ↓
+    const GITHUB_USERNAME = "Sacadmohamed ";
+
+    const repoList = document.getElementById("repo-list");
+
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`)
+      .then(response => response.json())
+      .then(repos => {
+        repoList.innerHTML = ""; // clear loading text
+
+        repos
+          .filter(repo => !repo.fork) // skip forks
+          .forEach(repo => {
+            const card = document.createElement("div");
+            card.classList.add("project");
+            card.innerHTML = `
+              <h3>${repo.name}</h3>
+              <p>${repo.description || "No description provided."}</p>
+              <a href="${repo.html_url}" target="_blank">🔗 View Repository</a>
+            `;
+            repoList.appendChild(card);
+          });
+      })
+      .catch(error => {
+        repoList.innerHTML = "<p>❌ Unable to load repositories.</p>";
+        console.error("Error fetching repos:", error);
+      });
+  </script>
+</body>
+</html>
